@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADvolution x Chirp</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, -apple-system, sans-serif; background: #0d0d0b; color: #f0ede6; }
+.page { max-width: 780px; margin: 0 auto; padding: 48px 24px; display: flex; flex-direction: column; gap: 48px; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: #555; margin-bottom: 10px; }
+.divider { border: none; border-top: 0.5px solid #1e1e1c; }
+
+/* HERO */
+.hero-tag { display: inline-block; background: #0a2015; color: #4ade80; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; margin-bottom: 18px; border: 0.5px solid #166534; }
+.hero h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 600; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 14px; }
+.hero h1 em { font-style: normal; color: #4ade80; }
+.hero p { font-size: 16px; color: #666; line-height: 1.7; max-width: 520px; }
+
+/* CONTRAST */
+.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+.box { border-radius: 12px; padding: 18px 20px; }
+.box-dim { background: #111; border: 0.5px solid #2a2a28; }
+.box-green { background: #0a2015; border: 0.5px solid #166534; }
+.box h3 { font-size: 13px; font-weight: 600; letter-spacing: .04em; margin-bottom: 6px; }
+.box-dim h3 { color: #444; }
+.box-green h3 { color: #4ade80; }
+.box p { font-size: 14px; line-height: 1.6; }
+.box-dim p { color: #444; }
+.box-green p { color: #4ade80; opacity: .8; }
+
+/* QUOTE */
+.quote { border-left: 3px solid #4ade80; padding-left: 20px; }
+.quote p { font-size: 19px; font-weight: 500; color: #f0ede6; line-height: 1.5; }
+
+/* JOURNEY */
+.journey-row { display: flex; flex-direction: row; gap: 16px; align-items: stretch; width: 100%; }
+.j-line { display: flex; flex-direction: column; align-items: center; width: 48px; flex-shrink: 0; }
+.j-dot { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.j-dot-gray { background: #111; border: 1px solid #2a2a28; }
+.j-dot-green { background: #0a2015; border: 2px solid #4ade80; }
+.j-dot-earn { background: #0a2015; border: 1px solid #166534; }
+.j-connector { width: 2px; flex: 1; min-height: 16px; margin: 5px 0; }
+.j-connector-gray { background: #2a2a28; }
+.j-connector-green { background: #166534; }
+.j-content { flex: 1; padding: 4px 0 18px; }
+.j-title { font-size: 15px; font-weight: 600; color: #f0ede6; margin-bottom: 2px; }
+.j-title-green { color: #4ade80; }
+.j-sub { font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 7px; }
+.j-sub-green { color: #4ade80; opacity: .8; }
+.j-badge { display: inline-block; font-size: 12px; border-radius: 20px; padding: 3px 10px; }
+.j-badge-dim { color: #333; background: #111; border: 0.5px solid #1e1e1c; }
+.j-badge-unlock { color: #4ade80; font-weight: 600; background: #0a2015; border: 0.5px solid #166534; }
+.j-earn { display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 12px; flex: 1; padding: 4px 0 18px; }
+.j-earn-badge { flex-shrink: 0; text-align: center; background: #0a2015; border: 0.5px solid #166534; border-radius: 10px; padding: 7px 14px; }
+.j-earn-badge .icon { font-size: 17px; line-height: 1; }
+.j-earn-badge .label { font-size: 11px; font-weight: 600; color: #4ade80; margin-top: 3px; white-space: nowrap; }
+.j-last { padding: 4px 0 0; }
+
+/* STATS */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.stat { background: #111; border-radius: 12px; padding: 20px; border: 0.5px solid #1e1e1c; text-align: center; }
+.stat .num { font-size: 30px; font-weight: 600; color: #4ade80; margin-bottom: 5px; }
+.stat .desc { font-size: 13px; color: #444; line-height: 1.5; }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step { display: flex; gap: 18px; padding: 18px 0; border-bottom: 0.5px solid #1a1a18; }
+.step:last-child { border-bottom: none; }
+.step-n { width: 28px; height: 28px; border-radius: 50%; background: #111; border: 0.5px solid #2a2a28; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #444; flex-shrink: 0; margin-top: 2px; }
+.step strong { display: block; font-size: 15px; font-weight: 600; margin-bottom: 3px; color: #f0ede6; }
+.step p { font-size: 13px; color: #555; line-height: 1.6; }
+.step-earn strong { color: #4ade80; }
+
+/* CTA */
+.cta { text-align: center; }
+.cta h2 { font-size: 26px; font-weight: 600; margin-bottom: 10px; }
+.cta p { font-size: 15px; color: #666; margin-bottom: 28px; }
+.cta-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 32px; }
+.cta-step { background: #111; border-radius: 12px; padding: 16px; border: 0.5px solid #1e1e1c; text-align: left; }
+.cta-step .n { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #444; margin-bottom: 6px; }
+.cta-step p { font-size: 13px; color: #666; line-height: 1.5; }
+.cta-btn { display: inline-block; background: #4ade80; color: #0d0d0b; padding: 14px 36px; border-radius: 100px; font-size: 15px; font-weight: 700; text-decoration: none; }
+
+/* FOOTER */
+footer { border-top: 0.5px solid #1a1a18; padding-top: 20px; display: flex; justify-content: space-between; font-size: 12px; color: #333; }
+
+@media(max-width:560px) {
+  .cols2, .stats, .cta-steps { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Chirp × ADvolution — for creator managers</div>
+    <h1>You built your audience on social.<br><em>Now get paid when brands reach them beyond it.</em></h1>
+    <p>Your fans are already watching TV, playing games, and browsing the web. Chirp and ADvolution let brands reach them there — and pay your talent every time they do.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PROBLEM -->
+  <div>
+    <div class="eyebrow">The problem</div>
+    <p style="font-size:18px; font-weight:500; color:#f0ede6; line-height:1.4; margin-bottom:8px;">Brands can already buy ads everywhere. Without your data, they're guessing who they're talking to.</p>
+    <p style="font-size:14px; color:#555; margin-bottom:24px; line-height:1.6;">Same ad slot on streaming TV. Completely different value depending on whose data powers it.</p>
+
+    <div class="cols2">
+
+      <!-- WITHOUT -->
+      <div style="border-radius:14px; overflow:hidden; border:0.5px solid #2a2a28;">
+        <div style="padding:13px 20px; background:#1a1a18; font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:#444;">Without creator data</div>
+        <div style="background:#0d0d0b; padding:0 20px;">
+          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:0.5px solid #1a1a18; font-size:14px;"><span style="color:#333;">Who</span><span style="color:#252522; letter-spacing:.1em; font-weight:500;">??? ??? ???</span></div>
+          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:0.5px solid #1a1a18; font-size:14px;"><span style="color:#333;">Age</span><span style="color:#2e2e2b; font-weight:500;">25 – 34</span></div>
+          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:0.5px solid #1a1a18; font-size:14px;"><span style="color:#333;">Location</span><span style="color:#2e2e2b; font-weight:500;">somewhere in the US</span></div>
+          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:0.5px solid #1a1a18; font-size:14px;"><span style="color:#333;">Verified fan</span><span style="color:#2e2e2b; font-weight:500;">maybe?</span></div>
+          <div style="display:flex; justify-content:space-between; padding:12px 0; font-size:14px;"><span style="color:#333;">Data source</span><span style="color:#2e2e2b; font-weight:500;">modeled guess</span></div>
+        </div>
+        <div style="padding:11px 20px; background:#111; font-size:13px; text-align:center; color:#333; border-top:0.5px solid #1a1a18;">a demographic bucket</div>
+      </div>
+
+      <!-- WITH -->
+      <div style="border-radius:14px; overflow:hidden; border:0.5px solid #166534;">
+        <div style="padding:13px 20px; background:#166534; font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:#4ade80;">With creator data</div>
+        <div style="background:#0d0d0b; padding:0 20px;">
+          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:0.5px solid #1a1a18; font-size:14px;"><span style="color:#444;">Who</span><span style="color:#4ade80; font-weight:500;">a real person</span></div>
+          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:0.5px solid #1a1a18; font-size:14px;"><span style="color:#444;">Age</span><span style="color:#4ade80; font-weight:500;">28</span></div>
+          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:0.5px solid #1a1a18; font-size:14px;"><span style="color:#444;">Location</span><span style="color:#4ade80; font-weight:500;">Chicago, IL</span></div>
+          <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:0.5px solid #1a1a18; font-size:14px;"><span style="color:#444;">Verified fan</span><span style="color:#4ade80; font-weight:500;">✓ confirmed subscriber</span></div>
+          <div style="display:flex; justify-content:space-between; padding:12px 0; font-size:14px;"><span style="color:#444;">Data source</span><span style="color:#4ade80; font-weight:500;">first-party fan data</span></div>
+        </div>
+        <div style="padding:11px 20px; background:#0a2015; font-size:13px; text-align:center; color:#4ade80; font-weight:500; border-top:0.5px solid #166534;">worth paying a premium to reach</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote">
+    <p>Without your data, a brand is guessing. With your data, they know exactly who they're talking to — and they're willing to pay for it.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- JOURNEY -->
+  <div>
+    <div class="eyebrow">How it works — a fan's day</div>
+    <p style="font-size:15px; color:#666; margin-bottom:24px; line-height:1.6;">The moment a fan subscribes on Chirp is when your talent starts earning. Every screen after that is a pay moment.</p>
+
+    <div class="journey-row">
+      <div class="j-line">
+        <div class="j-dot j-dot-gray">📱</div>
+        <div class="j-connector j-connector-gray"></div>
+      </div>
+      <div class="j-content">
+        <div class="j-title">Instagram</div>
+        <div class="j-sub">Fan sees creator post, clicks Chirp link</div>
+        <span class="j-badge j-badge-dim">No earnings yet</span>
+      </div>
+    </div>
+
+    <div class="journey-row">
+      <div class="j-line">
+        <div class="j-dot j-dot-green">🔗</div>
+        <div class="j-connector j-connector-green"></div>
+      </div>
+      <div class="j-content">
+        <div class="j-title j-title-green">Chirp page</div>
+        <div class="j-sub j-sub-green">Fan subscribes — ADvolution captures their identity</div>
+        <span class="j-badge j-badge-unlock">⚡ Earning unlocked from this moment</span>
+      </div>
+    </div>
+
+    <div class="journey-row">
+      <div class="j-line">
+        <div class="j-dot j-dot-earn">📺</div>
+        <div class="j-connector j-connector-green"></div>
+      </div>
+      <div class="j-earn">
+        <div>
+          <div class="j-title">Streaming TV</div>
+          <div class="j-sub">Brand ad finds them on the couch</div>
+        </div>
+        <div class="j-earn-badge"><div class="icon">💰</div><div class="label">Creator paid</div></div>
+      </div>
+    </div>
+
+    <div class="journey-row">
+      <div class="j-line">
+        <div class="j-dot j-dot-earn">🎮</div>
+        <div class="j-connector j-connector-green"></div>
+      </div>
+      <div class="j-earn">
+        <div>
+          <div class="j-title">Mobile game</div>
+          <div class="j-sub">Brand ad appears in-app</div>
+        </div>
+        <div class="j-earn-badge"><div class="icon">💰</div><div class="label">Creator paid</div></div>
+      </div>
+    </div>
+
+    <div class="journey-row">
+      <div class="j-line">
+        <div class="j-dot j-dot-earn">🌐</div>
+      </div>
+      <div class="j-earn j-last">
+        <div>
+          <div class="j-title">Web</div>
+          <div class="j-sub">Brand ad on premium publishers</div>
+        </div>
+        <div class="j-earn-badge"><div class="icon">💰</div><div class="label">Creator paid</div></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- HOW THEY GET PAID -->
+  <div>
+    <div class="eyebrow">How your talent gets paid</div>
+    <p style="font-size:18px; font-weight:500; color:#f0ede6; line-height:1.4; margin-bottom:20px;">Every time a brand finds one of your fans on another screen, your talent earns.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div><strong>Brand buys access to your talent's fan audience</strong><p>Through ADvolution, brands pay to reach verified fans across streaming TV, mobile games, and web — through tools they already use.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div><strong>A fan sees the brand's ad on another screen</strong><p>That Chirp subscriber is watching TV or playing a game. The brand's ad finds them there. Each time, an impression is logged.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div><strong>The publisher pays ADvolution a data fee</strong><p>When the ad wins the auction, the publisher pays out the bid. ADvolution collects a data fee — because your talent's fan data made that impression worth buying.</p></div>
+      </div>
+      <div class="step step-earn">
+        <div class="step-n" style="border-color:#166534; color:#4ade80;">4</div>
+        <div><strong>ADvolution shares that fee with your talent — automatically</strong><p>Revenue flows back per impression. No invoice. No negotiation. No sponsored post required.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PROOF -->
+  <div>
+    <div class="eyebrow">Proof it works</div>
+    <p style="font-size:15px; color:#666; margin-bottom:16px; line-height:1.6;">ADvolution's pilot with Anthony Anderson. Brands like Novo Nordisk and Diageo increased their investment.</p>
+    <div class="stats">
+      <div class="stat"><div class="num">$15M+</div><div class="desc">media spend in pilot year</div></div>
+      <div class="stat"><div class="num">30–50%</div><div class="desc">increase in brand deal value</div></div>
+      <div class="stat"><div class="num">0</div><div class="desc">extra sponsored posts required</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Your audience is already out there.</h2>
+    <p>Brands are spending to reach fans like yours right now.<br>The only question is whether your talent gets a cut.</p>
+    <div class="cta-steps">
+      <div class="cta-step"><div class="n">Step 1</div><p>Pick 1–2 talent with engaged fanbases and set up their Chirp page</p></div>
+      <div class="cta-step"><div class="n">Step 2</div><p>Opt into ADvolution's marketplace — they handle everything</p></div>
+      <div class="cta-step"><div class="n">Step 3</div><p>Pitch existing brand partners on the new capability</p></div>
+    </div>
+    <a class="cta-btn" href="https://ad-volution.com/for-talent">Get started with ADvolution →</a>
+  </div>
+
+  <footer>
+    <span>Chirp × ADvolution</span>
+    <span>Source: ADvolution. Pilot data from Anthony Anderson campaign.</span>
+  </footer>
+
+</div>
+</body>
+</html>
